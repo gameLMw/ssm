@@ -20,5 +20,7 @@
         <module>spring01ioc</module>
 
         <module>spring02aop</module>
+
+        <module>spring03tx</module>
     </modules>
 </project>
