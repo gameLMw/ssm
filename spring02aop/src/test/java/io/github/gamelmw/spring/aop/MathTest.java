@@ -2,7 +2,10 @@ package io.github.gamelmw.spring.aop;
 
 import io.github.gamelmw.spring.aop.calculator.MathCalculator;
 import io.github.gamelmw.spring.aop.calculator.impl.MathCalculatorImpl;
+import io.github.gamelmw.spring.aop.proxy.dynamic.DynamicProxy;
 import io.github.gamelmw.spring.aop.proxy.statics.CalculatorStaticProxy;
+import io.github.gamelmw.spring.aop.service.UserService;
+import io.github.gamelmw.spring.aop.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationHandler;
@@ -10,6 +13,20 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class MathTest {
+
+    @Test
+    public void test03() {
+        MathCalculator proxyInstance = (MathCalculator) DynamicProxy.getProxyInstance(new MathCalculatorImpl());
+
+        proxyInstance.add(1, 2);
+
+        System.out.println("-----------------------");
+        UserService instance = (UserService) DynamicProxy.getProxyInstance(new UserServiceImpl());
+        instance.saveUser();
+
+        System.out.println("-----------------------");
+        proxyInstance.div(2, 0);
+    }
 
     @Test
     public void test02() {
@@ -34,7 +51,7 @@ public class MathTest {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 // 执行目标方法
                 System.out.println("InvocationHandler 的 invoke 在运行");
-                
+
                 Object result = method.invoke(target, args);
 
                 return result;
