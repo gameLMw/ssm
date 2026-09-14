@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Spring2aopApplicationTests {
+class Spring02aopApplicationTests {
 
     //设计模式：依赖倒置原（依赖接口，不要依赖实现）
 
