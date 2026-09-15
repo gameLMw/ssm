@@ -22,5 +22,7 @@
         <module>spring02aop</module>
 
         <module>spring03tx</module>
+
+        <module>springmvc01</module>
     </modules>
 </project>
