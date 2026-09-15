@@ -2,6 +2,7 @@ package io.github.gamelmw.spring.tx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /*
  * 操作数据库
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 3.使用JdbcTemplate操作数据库
  * */
 
+@EnableTransactionManagement // 基于注解的自动化事务管理
 @SpringBootApplication
 public class Spring03txApplication {
 
