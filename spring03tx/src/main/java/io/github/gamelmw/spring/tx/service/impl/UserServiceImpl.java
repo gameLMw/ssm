@@ -6,6 +6,7 @@ import io.github.gamelmw.spring.tx.dao.BookDao;
 import io.github.gamelmw.spring.tx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -18,6 +19,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     AccountDao accountDao;
 
+    /*
+     * 事务细节
+     * 1.transactionManager：事务管理器
+     * */
+
+    /*
+     * 购买图书
+     * @param username 用户名
+     * @param bookId 图书ID
+     * @param buyNum 购买数量
+     * */
+    @Transactional
     @Override
     public void checkout(String username, Integer bookId, Integer buyNum) {
         // 1.查询图书信息
@@ -26,7 +39,7 @@ public class UserServiceImpl implements UserService {
         BigDecimal price = book.getPrice();
 
         // 2.计算扣减额度
-        BigDecimal total =new BigDecimal(buyNum).multiply(price);
+        BigDecimal total = new BigDecimal(buyNum).multiply(price);
 
         // 3.扣减余额
         accountDao.updateBalanceByUsername(username, total);
