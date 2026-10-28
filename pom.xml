@@ -24,5 +24,7 @@
         <module>spring03tx</module>
 
         <module>springmvc01</module>
+
+        <module>mybatis-01-helloworld</module>
     </modules>
 </project>
